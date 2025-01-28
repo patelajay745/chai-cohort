@@ -1,0 +1,100 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, sans-serif;
+  line-height: 1.6;
+  color: white;
+  background-color: #0a0a0a;
+  height: 100%;
+  padding: 0 5%;
+}
+
+.hero {
+  height: 100vh;
+  background-image: linear-gradient(#150e1f, #09090a);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.announcement {
+  margin-bottom: 3%;
+}
+
+.announcement-link {
+  /*  */
+  background-color: #1f1a29;
+  color: white;
+  padding: 20px;
+  text-decoration: none;
+  border-radius: 30px;
+  font-size: 1.2rem;
+  border: 0.5px solid white;
+}
+
+.announcement-link:hover {
+}
+
+.announcement-text {
+}
+
+.announcement-button {
+  background-color: #363040;
+  margin-left: 5px;
+  border-radius: 20px;
+  padding: 10px 15px;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 60%;
+}
+
+.hero-title {
+  font-size: 5rem;
+  line-height: 1.3;
+  margin-bottom: 20px;
+}
+
+.hero-description {
+  font-size: 1.5rem;
+  width: 65%;
+  margin-bottom: 30px;
+}
+
+.cta-button {
+  padding: 20px 45px;
+  border-radius: 50px;
+  background-image: linear-gradient(to bottom right, #345bea, #713feb);
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1.5rem;
+}
+
+.cta-button:hover {
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding: 1rem;
+  }
+
+  .announcement-link {
+    font-size: 0.75rem;
+  }
+
+  .hero-content {
+    padding: 0 1rem;
+  }
+}
