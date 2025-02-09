@@ -1,0 +1,191 @@
+:root {
+  --primary-blue: #3b82f6;
+  --primary-blue-dark: #2563eb;
+  --gray-800: #1f2937;
+  --neutral-400: #9ca3af;
+  --neutral-900: #111827;
+
+  /* Dark mode variables */
+  --bg-dark: #111827;
+  --text-dark: #ffffff;
+  --border-dark: #374151;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0 2%;
+  background-color: black;
+}
+.container {
+  background-color: #ffffff;
+  padding: 2% 5%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+.hero {
+}
+
+.hero-grid {
+  display: flex;
+}
+
+.content-col h1 {
+  font-size: 7rem;
+}
+
+.content-col p {
+  font-size: 2rem;
+  font-weight: 500;
+  margin-top: 15px;
+  margin-bottom: 35px;
+}
+
+.cta-group {
+  display: flex;
+  margin-bottom: 55px;
+  gap: 15px;
+}
+
+.sr-only {
+}
+
+.input-wrapper {
+}
+
+input[type="text"] {
+  width: 400px;
+  padding: 20px 85px 20px 15px;
+  border-radius: 10px;
+  border-color: #9ca3af;
+  font-size: 1.5rem;
+  border-width: 1px;
+  text-align: left;
+}
+
+.demo-button {
+  width: 250px;
+  background-color: #3b82f6;
+  padding: 20px;
+  color: white;
+  font-weight: 500;
+  font-size: larger;
+  border-radius: 15px;
+  border-width: 0px;
+}
+
+.demo-button:hover {
+}
+
+.brands-section {
+}
+
+.trusted-by {
+  text-transform: capitalize;
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.brand-logos {
+  margin-top: 3%;
+  display: flex;
+  gap: 10%;
+}
+
+.brand-logo {
+}
+
+.image-col {
+}
+
+.hero-image {
+  border-radius: 20px;
+}
+
+@media (min-width: 640px) {
+  .hero {
+  }
+
+  .content-col h1 {
+  }
+
+  .cta-group {
+  }
+
+  .demo-button {
+  }
+
+  .input-wrapper {
+  }
+
+  input[type="text"] {
+  }
+}
+
+@media (min-width: 768px) {
+  .content-col h1 {
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero {
+  }
+
+  .hero-grid {
+  }
+
+  .content-col h1 {
+  }
+
+  .cta-group {
+  }
+
+  .brands-section {
+  }
+
+  .image-col {
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero-grid {
+    gap: 3rem;
+  }
+}
+
+.dark-mode-toggle {
+  background-color: var(--primary-blue-dark);
+  border: none;
+  font-size: 1.2rem;
+  margin-bottom: 5%;
+  padding: 15px 30px;
+  color: white;
+  font-weight: 500;
+  font-size: larger;
+  border-radius: 15px;
+  
+}
+
+.dark-mode-toggle:hover {
+}
+
+body.dark {
+}
+
+.dark-mode-toggle {
+}
+
+.dark-mode-toggle:hover {
+}
+
+input[type="text"].dark {
+}
+
+input[type="text"]::placeholder {
+}
