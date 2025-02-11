@@ -9,10 +9,13 @@
     <link rel="stylesheet" href="solution.css" />
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
   </head>
-  <body>
-    <nav class="navbar ">
-      <div class="logo">
+  <body class="hero bg-[url(./assets/chaigym.png)] bg-no-repeat bg-cover">
+    <nav
+      class="navbar flex bg-[#333333] justify-between py-3 px-25 items-center text-white"
+    >
+      <div class="logo flex items-center font-bold text-xl">
         <img
+          class="mr-3 rounded-full"
           src="./assets/chaicodelogo.png"
           alt="ChaiCode Logo"
           height="50px"
@@ -20,33 +23,45 @@
         />
         Chai Aur Fitness
       </div>
-      <div class="nav-links">
+      <div class="nav-links flex gap-12 flex-wrap">
         <a href="#home">Home</a>
         <a href="#pricing">Pricing</a>
         <a href="#contact">Contact</a>
       </div>
     </nav>
 
-    <main class="hero">
-      <div class="hero-content">
-        <h1>Transform Your Body</h1>
-        <p>Join the fitness revolution with Chai Aur Fitness</p>
-        <button class="cta-button">Start Free Trial</button>
+    <main
+      class="hero bg-[#000000b5] h-screen text-white flex flex-col justify-evenly"
+    >
+      <div class="hero-content text-center flex flex-col gap-7 items-center">
+        <h1 class="text-6xl font-bold">Transform Your Body</h1>
+        <p class="text-lg">Join the fitness revolution with Chai Aur Fitness</p>
+        <button class="cta-button bg-[#ff7902] w-fit px-10 py-4 rounded-lg">
+          Start Free Trial
+        </button>
       </div>
-      <div class="features">
-        <div class="feature">
+      <div
+        class="features bg-[#000000d1] rounded-2xl mx-10 p-20 flex justify-between flex-wrap"
+      >
+        <div
+          class="feature w-72 rounded-lg border-[#ff7902] border-2 p-4 items-center flex flex-col justify-between gap-2"
+        >
           <img src="./assets/handshake.svg" height="50" width="50" />
-          <h3>Expert Trainers</h3>
+          <h3 class="text-[#ff7902] text-lg font-bold">Expert Trainers</h3>
           <p>Learn from certified professionals</p>
         </div>
-        <div class="feature">
+        <div
+          class="feature w-72 rounded-lg border-[#ff7902] border-2 p-4 items-center flex flex-col"
+        >
           <img src="./assets/dumbbell.svg" height="50" width="50" />
-          <h3>Modern Equipment</h3>
+          <h3 class="text-[#ff7902] text-lg font-bold">Modern Equipment</h3>
           <p>State-of-the-art facilities</p>
         </div>
-        <div class="feature">
+        <div
+          class="feature w-72 rounded-lg border-[#ff7902] border-2 p-4 items-center flex flex-col"
+        >
           <img src="./assets/calendar-clock.svg" height="50" width="50" />
-          <h3>Flexible Timing</h3>
+          <h3 class="text-[#ff7902] text-lg font-bold">Flexible Timing</h3>
           <p>Open 24/7 for your convenience</p>
         </div>
       </div>

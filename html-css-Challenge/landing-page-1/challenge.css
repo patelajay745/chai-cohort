@@ -9,6 +9,9 @@
 body {
   font-family: "Arial", sans-serif;
   line-height: 1.6;
+  background-image: url(assets/chaigym.png);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 /* Navbar styles */
@@ -35,6 +38,8 @@ body {
 /* Hero section styles */
 .hero {
   /* Add styles for hero section */
+  background-color: #000000b5;
+  height: 89vh;
 }
 
 .hero-content {
