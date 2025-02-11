@@ -5,13 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="./assets/favicon.ico" />
     <title>Chai Cohort - Learn to Code</title>
-    <link rel="stylesheet" href="challenge.css">
+    <!-- <link rel="stylesheet" href="challenge.css" /> -->
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <!-- <link rel="stylesheet" href="solution.css" /> -->
   </head>
-  <body>
-    <nav class="navbar">
-      <div class="logo">
+  <body class="bg-[url(./assets/chaicohort.png)] bg-no-repeat bg-cover">
+    <nav
+      class="navbar bg-[#1a1a1a] flex justify-between text-white items-center px-12 py-2"
+    >
+      <div
+        class="logo text-[#00ff9d] flex items-center gap-2 text-xl font-bold"
+      >
         <img
+          class="rounded-full border-2"
           src="./assets/chaicodelogo.png"
           alt="ChaiCode Logo"
           height="50px"
@@ -19,41 +25,58 @@
         />
         Chai Cohort
       </div>
-      <div class="menu">
+      <div class="menu flex gap-16">
         <a href="#courses">Courses</a>
         <a href="#mentors">Mentors</a>
         <a href="#join">Join Now</a>
       </div>
     </nav>
 
-    <div class="hero">
-      <div class="hero-content">
-        <h1>Master Coding with Chai Cohort</h1>
-        <p>Learn, Build, and Grow with India's Best Coding Community</p>
+    <div
+      class="hero bg-[#000000bd] py-20 flex flex-col items-center text-white"
+    >
+      <div class="hero-content flex flex-col items-center gap-6">
+        <h1 class="text-4xl font-bold tracking-wider text-[#00ff9d]">
+          Master Coding with Chai Cohort
+        </h1>
+        <p class="text-lg">
+          Learn, Build, and Grow with India's Best Coding Community
+        </p>
         <img
+          class="border-2 rounded-lg border-[#00ff9d]"
           src="./assets/web-dev-cohort.jpg"
           alt="Web Dev Cohort 1.0"
           width="400"
           height="225"
         />
-        <button class="enroll-button">Enroll Now</button>
+        <button
+          class="enroll-button bg-[#00ff9d] px-15 py-5 rounded-4xl text-black text-lg"
+        >
+          Enroll Now
+        </button>
       </div>
     </div>
 
-    <section class="highlights">
-      <div class="highlight-card">
+    <section class="highlights bg-[#1a1a1a] flex justify-between px-30 py-18">
+      <div
+        class="highlight-card rounded-2xl bg-[#2a2a2a] p-8 flex flex-col w-80 items-center text-white text-center gap-2"
+      >
         <img src="./assets/tv-minimal-play.svg" height="50" width="50" />
-        <h3>Live Classes</h3>
+        <h3 class="text-[#00ff9d] font-bold text-lg">Live Classes</h3>
         <p>Interactive sessions with industry experts</p>
       </div>
-      <div class="highlight-card">
+      <div
+        class="highlight-card rounded-2xl bg-[#2a2a2a] p-8 flex flex-col w-80 items-center text-white text-center gap-2"
+      >
         <img src="./assets/folder-git-2.svg" height="50" width="50" />
-        <h3>Real Projects</h3>
+        <h3 class="text-[#00ff9d] font-bold text-lg">Real Projects</h3>
         <p>Build production-ready applications</p>
       </div>
-      <div class="highlight-card">
+      <div
+        class="highlight-card rounded-2xl bg-[#2a2a2a] p-8 flex flex-col w-80 items-center text-white text-center gap-2"
+      >
         <img src="./assets/chart-no-axes-combined.svg" height="50" width="50" />
-        <h3>Career Support</h3>
+        <h3 class="text-[#00ff9d] font-bold text-lg">Career Support</h3>
         <p>1:1 mentorship and placement assistance</p>
       </div>
     </section>
