@@ -5,13 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="./assets/favicon.ico" />
     <title>ChaiPatti - Premium Tea Store</title>
-    <link rel="stylesheet" href="challenge.css">
+    <!-- <link rel="stylesheet" href="challenge.css"> -->
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <!-- <link rel="stylesheet" href="solution.css" /> -->
   </head>
   <body>
-    <header class="header">
-      <div class="logo">
+    <header class="header flex py-2 px-20 justify-between items-center">
+      <div
+        class="logo flex gap-2 items-center text-[#8b4513] font-semibold text-2xl tracking-wide"
+      >
         <img
+          class="rounded-full border-[#8b4513] p-0.5 border-2"
           src="./assets/chaicodelogo.png"
           alt="ChaiCode Logo"
           height="50px"
@@ -19,7 +23,7 @@
         />
         ChaiPatti
       </div>
-      <nav class="nav-menu">
+      <nav class="nav-menu gap-7 flex text-[#8b4513]">
         <a href="#home">Home</a>
         <a href="#teas">Our Teas</a>
         <a href="#about">About</a>
@@ -27,50 +31,91 @@
       </nav>
     </header>
 
-    <section class="hero">
-      <div class="hero-text">
-        <h1>Experience the Perfect Cup</h1>
-        <p>Handcrafted teas from the finest gardens of India</p>
-        <button class="shop-button">Shop Now</button>
+    <section
+      class="hero bg-cover bg-center bg-fixed bg-no-repeat border-[#8b4513]"
+      style="
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.9)
+          ),
+          url('assets/chaipatti.png');
+      "
+    >
+      <div
+        class="hero-text flex flex-col justify-center items-center p-30 text-white gap-6"
+      >
+        <h1 class="text-6xl">Experience the Perfect Cup</h1>
+        <p class="text-lg">Handcrafted teas from the finest gardens of India</p>
+        <button class="shop-button bg-[#8b4513] px-10 py-2 rounded-3xl">
+          Shop Now
+        </button>
       </div>
     </section>
 
-    <section class="tea-collection">
-      <h2>Our Premium Collection</h2>
-      <div class="tea-cards">
-        <div class="tea-card">
+    <section class="tea-collection flex flex-col items-center py-10">
+      <h2 class="text-4xl tracking-wider text-[#8b4513] font-semibold mb-10">
+        Our Premium Collection
+      </h2>
+      <div
+        class="tea-cards grid grid-cols-3 gap-20 pt-10 justify-center px-20 items-center"
+      >
+        <div
+          class="tea-card shadow-lg flex flex-col items-center w-80 p-10 rounded-lg border-3 border-[#f5f5f5] h-64 text-center gap-3"
+        >
           <img src="./assets/tea.svg" height="50" width="50" />
-          <h3>Darjeeling Tea</h3>
-          <p>
+          <h3 class="text-[#8b4513] text-xl font-semibold tracking-wider">
+            Darjeeling Tea
+          </h3>
+          <p class="text-[#666666] tracking-wide">
             Known as the 'Champagne of Teas,' grown in the hills of Darjeeling.
           </p>
         </div>
-        <div class="tea-card">
+        <div
+          class="tea-card shadow-lg flex flex-col items-center w-80 p-10 rounded-lg border-3 border-[#f5f5f5] h-64 text-center gap-3"
+        >
           <img src="./assets/tea-leaf.svg" height="50" width="50" />
-          <h3>Assam Tea</h3>
-          <p>Rich, bold, and malty tea from the Assam region of India.</p>
+          <h3 class="text-[#8b4513] text-xl font-semibold tracking-wider">
+            Assam Tea
+          </h3>
+          <p class="text-[#666666] tracking-wide">Rich, bold, and malty tea from the Assam region of India.</p>
         </div>
-        <div class="tea-card">
+        <div
+          class="tea-card shadow-lg flex flex-col items-center w-80 p-10 rounded-lg border-3 border-[#f5f5f5] h-64 text-center gap-3"
+        >
           <img src="./assets/tea.svg" height="50" width="50" />
-          <h3>Kashmiri Kahwa</h3>
-          <p>
+          <h3 class="text-[#8b4513] text-xl font-semibold tracking-wider">
+            Kashmiri Kahwa
+          </h3>
+          <p class="text-[#666666] tracking-wide">
             Traditional green tea infused with saffron, almonds, and spices.
           </p>
         </div>
-        <div class="tea-card">
+        <div
+          class="tea-card shadow-lg flex flex-col items-center w-80 p-10 rounded-lg border-3 border-[#f5f5f5] h-64 text-center gap-3"
+        >
           <img src="./assets/tea-leaf.svg" height="50" width="50" />
-          <h3>Sikkim Tea</h3>
-          <p>Floral and fruity tea from the Temi Tea Garden in Sikkim.</p>
+          <h3 class="text-[#8b4513] text-xl font-semibold tracking-wider">
+            Sikkim Tea
+          </h3>
+          <p class="text-[#666666] tracking-wide">Floral and fruity tea from the Temi Tea Garden in Sikkim.</p>
         </div>
-        <div class="tea-card">
+        <div
+          class="tea-card shadow-lg flex flex-col items-center w-80 p-10 rounded-lg border-3 border-[#f5f5f5] h-64 text-center gap-3"
+        >
           <img src="./assets/tea.svg" height="50" width="50" />
-          <h3>Nilgiri Tea</h3>
-          <p>Fragrant and strong tea from the Nilgiri Hills of Tamil Nadu.</p>
+          <h3 class="text-[#8b4513] text-xl font-semibold tracking-wider">
+            Nilgiri Tea
+          </h3>
+          <p class="text-[#666666] tracking-wide">Fragrant and strong tea from the Nilgiri Hills of Tamil Nadu.</p>
         </div>
-        <div class="tea-card">
+        <div
+          class="tea-card shadow-lg flex flex-col items-center w-80 p-10 rounded-lg border-3 border-[#f5f5f5] h-64 text-center gap-3"
+        >
           <img src="./assets/tea-leaf.svg" height="50" width="50" />
-          <h3>Masala Chai</h3>
-          <p>
+          <h3 class="text-[#8b4513] text-xl font-semibold tracking-wider">
+            Masala Chai
+          </h3>
+          <p class="text-[#666666] tracking-wide">
             Aromatic tea brewed with spices like cardamom, ginger, and cloves.
           </p>
         </div>
