@@ -34,6 +34,7 @@ h1 {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+
 }
 
 .carousel-caption {
@@ -117,3 +118,4 @@ h1 {
 .auto-play-button:hover {
   background-color: #2980b9;
 }
+
