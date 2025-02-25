@@ -22,6 +22,7 @@ const images = [
 ];
 
 let currentImageIndex = 0;
+let refreshIntervalId;
 
 const carouselCaptionElement = document.getElementById("caption");
 const prevButtonElement = document.getElementById("prevButton");
@@ -61,6 +62,7 @@ nextButtonElement.addEventListener("click", () => {
 autoPlayButtonElement.addEventListener("click", () => {
   if (autoPlayButtonElement.textContent == "Stop Auto Play") {
     autoPlayButtonElement.textContent = "Start Auto Play";
+    stopTimer();
   } else {
     startTimer(currentImageIndex);
     autoPlayButtonElement.textContent = "Stop Auto Play";
@@ -89,11 +91,16 @@ function showNextImage(currentImageIndex) {
   return currentImageIndex;
 }
 
+function stopTimer() {
+  clearInterval(refreshIntervalId);
+  timerDisplayElement.textContent = " ";
+}
+
 function startTimer(currentImageIndex) {
   let currentTime = 5;
   timerDisplayElement.textContent = currentTime;
 
-  setInterval(() => {
+  refreshIntervalId = setInterval(() => {
     if (currentTime == 0) {
       currentImageIndex = showNextImage(currentImageIndex);
       currentTime = 6;
