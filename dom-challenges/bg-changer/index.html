@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  </head>
+  <body>
+    <div class="bg-[#ededed] min-w-screen p-8 flex-col">
+      <div class="flex gap-4 border-1 mb-5 p-4 rounded-lg items-center">
+        <label>Some Color to try :</label>
+        <label class="bg-[#E2ea9e] p-1">E2ea9e</label>
+        <label class="bg-[#fff1d5] p-1">fff1d5</label>
+        <label class="bg-[#8bfff0] p-1">8bfff0</label>
+        <label class="bg-[#Ffe3eb] p-1">Ffe3eb</label>
+      </div>
+      <div class="flex">
+        <input
+          maxlength="6"
+          id="userInput"
+          type="text"
+          class="rounded-lg border-1 bg-white p-2"
+        />
+        <button
+          id="btnCreate"
+          class="ml-4 rounded-lg bg-blue-400 px-8 text-white"
+        >
+          Create
+        </button>
+      </div>
+    </div>
+
+    <div id="groundForbtn" class="mt-8"></div>
+    <script src="index.js"></script>
+  </body>
+</html>
