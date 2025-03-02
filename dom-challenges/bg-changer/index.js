@@ -39,7 +39,7 @@ btnCreateElement.addEventListener("click", () => {
 function makeColorSetter(color) {
   return function () {
     document.body.className = "";
-    document.body.classList.toggle(`bg-[#${color}]`);
+    document.body.classList.add(`bg-[#${color}]`);
   };
 }
 
