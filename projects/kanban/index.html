@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your kanban Simple board</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  </head>
+  <body>
+    <div id="main" class="flex h-screen bg-[#E6E5E6] p-4 pb-4 gap-2">
+      <div
+        id="items"
+        class="bg-[#DCDDE0] w-96 rounded-lg flex flex-col p-4 gap-2"
+      >
+        <div id="items-header" class="font-semibold flex gap-2 items-center">
+          <div class="rounded-full p-2 border-2 border-[#bdf3a3]"></div>
+          <div>To Do</div>
+
+          <div
+            class="text-gray-500 h-6 w-6 rounded-full bg-gray-300 p-1 flex items-center justify-center"
+          >
+            2
+          </div>
+        </div>
+        <div
+          id="items-main"
+          class="mb-auto h-10 flex-1 flex flex-col gap-2 ml-1"
+        >
+          <div
+            id="item"
+            class="bg-[#E6E5E6] p-4 rounded-lg shadow-lg border-1 border-gray-50"
+          >
+            Task 3
+          </div>
+
+          <div
+            id="item"
+            class="bg-[#E6E5E6] p-4 rounded-lg shadow-lg border-1 border-gray-50"
+          >
+            Task 6
+          </div>
+        </div>
+        <div id="items-footer" class="h-10 flex text-[#9D9EA3]">
+          <button id="btnAddTodo" class="flex items-center gap-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 4.5v15m7.5-7.5h-15"
+              />
+            </svg>
+            Add item
+          </button>
+        </div>
+      </div>
+      <div
+        id="items"
+        class="bg-[#DCDDE0] w-96 rounded-lg flex flex-col p-4 gap-2"
+      >
+        <div id="items-header" class="font-semibold flex gap-2 items-center">
+          <div class="rounded-full p-2 border-2 border-[#e5ed9b]"></div>
+          <div>Doing</div>
+
+          <div
+            class="text-gray-500 h-6 w-6 rounded-full bg-gray-300 p-1 flex items-center justify-center"
+          >
+            5
+          </div>
+        </div>
+        <div
+          id="items-main"
+          class="mb-auto h-10 flex-1 flex flex-col gap-2 ml-1"
+        >
+          <div
+            id="item"
+            class="bg-[#E6E5E6] p-4 rounded-lg shadow-lg border-1 border-gray-50"
+          >
+            Task 7
+          </div>
+
+          <div
+            id="item"
+            class="bg-[#E6E5E6] p-4 rounded-lg shadow-lg border-1 border-gray-50"
+          >
+            Task 1
+          </div>
+
+          <div
+            id="item"
+            class="bg-[#E6E5E6] p-4 rounded-lg shadow-lg border-1 border-gray-50"
+          >
+            Task 2
+          </div>
+
+          <div
+            id="item"
+            class="bg-[#E6E5E6] p-4 rounded-lg shadow-lg border-1 border-gray-50"
+          >
+            Task 4
+          </div>
+
+          <div
+            id="item"
+            class="bg-[#E6E5E6] p-4 rounded-lg shadow-lg border-1 border-gray-50"
+          >
+            Task 5
+          </div>
+        </div>
+        <div id="items-footer" class="h-10 flex text-[#9D9EA3]">
+          <button id="btnAddTodo" class="flex items-center gap-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 4.5v15m7.5-7.5h-15"
+              />
+            </svg>
+            Add item
+          </button>
+        </div>
+      </div>
+      <div
+        id="items"
+        class="bg-[#DCDDE0] w-96 rounded-lg flex flex-col p-4 gap-2"
+      >
+        <div id="items-header" class="font-semibold flex gap-2 items-center">
+          <div class="rounded-full p-2 border-2 border-[#bdf3a3]"></div>
+          <div>Done</div>
+
+          <div
+            class="text-gray-500 h-6 w-6 rounded-full bg-gray-300 p-1 flex items-center justify-center"
+          >
+            2
+          </div>
+        </div>
+        <div
+          id="items-main"
+          class="mb-auto h-10 flex-1 flex flex-col gap-2 ml-1"
+        >
+          <div
+            id="item"
+            class="bg-[#E6E5E6] p-4 rounded-lg shadow-lg border-1 border-gray-50"
+          >
+            Task 9
+          </div>
+
+          <div
+            id="item"
+            class="bg-[#E6E5E6] p-4 rounded-lg shadow-lg border-1 border-gray-50"
+          >
+            Task 8
+          </div>
+
+          <div
+            id="item"
+            class="bg-[#E6E5E6] p-4 rounded-lg shadow-lg border-1 border-gray-50"
+          >
+            Task 10
+          </div>
+        </div>
+        <div id="items-footer" class="h-10 flex text-[#9D9EA3]">
+          <button id="btnAddTodo" class="flex items-center gap-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 4.5v15m7.5-7.5h-15"
+              />
+            </svg>
+            Add item
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      id="modal"
+      class="fixed inset-0 backdrop-blur-sm overflow-x-hidden overflow-y-auto flex items-center justify-center z-0"
+    >
+      <div
+        class="flex bg-[#fffeff] min-w-80 flex-col p-4 rounded-2xl shadow-xl gap-3"
+      >
+        <div class="flex items-center justify-between">
+          <label class="font-semibold">Title</label>
+          <img width="25px" src="assets/cross.svg" />
+        </div>
+        <div class="border-t border-gray-200"></div>
+        <div class="flex flex-col gap-1 font-semibold">
+          <label>Name</label>
+          <input type="text" class="border-1 border-gray-200 rounded-lg" />
+        </div>
+
+        <div class="flex flex-col gap-1 font-semibold">
+          <label>Colors</label>
+          <div class="flex gap-1">
+            <div class="rounded-full p-0.5 border-2 border-[#bdf3a3] flex">
+              <button class="bg-[#bdf3a3] rounded-full p-2"></button>
+            </div>
+            <div class="rounded-full p-0.5 border-2 border-[#e5ed9b] flex">
+              <button class="bg-[#e5ed9b] rounded-full p-2"></button>
+            </div>
+            <div class="rounded-full p-0.5 border-2 border-[#eccd9b] flex">
+              <button class="bg-[#eccd9b] rounded-full p-2"></button>
+            </div>
+            <div class="rounded-full p-0.5 border-2 border-[#cad3fb] flex">
+              <button class="bg-[#cad3fb] rounded-full p-2"></button>
+            </div>
+            <div class="rounded-full p-0.5 border-2 border-[#f9cfcf] flex">
+              <button class="bg-[#f9cfcf] rounded-full p-2"></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-1 font-semibold">
+          <label>Description</label>
+          <input type="text" class="border-1 border-gray-200 rounded-lg" />
+        </div>
+        <div class="border-t border-gray-200 mt-5"></div>
+        <div class="flex gap-2 justify-end">
+          <button class="px-4 py-2 bg-gray-100 rounded-lg">Cancel</button>
+          <button class="px-4 py-2 bg-green-400 rounded-lg">Submit</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>
