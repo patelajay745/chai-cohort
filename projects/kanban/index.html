@@ -7,11 +7,10 @@
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
   </head>
   <body>
+    <!-- Main Container -->
     <div id="main" class="flex h-screen bg-[#E6E5E6] p-4 pb-4 gap-2">
-      <div
-        id="items"
-        class="bg-[#DCDDE0] w-96 rounded-lg flex flex-col p-4 gap-2"
-      >
+      <!-- Todo Items Container -->
+      <div class="bg-[#DCDDE0] w-96 rounded-lg flex flex-col p-4 gap-2">
         <div id="items-header" class="font-semibold flex gap-2 items-center">
           <div class="rounded-full p-2 border-2 border-[#bdf3a3]"></div>
           <div>To Do</div>
@@ -22,20 +21,15 @@
             2
           </div>
         </div>
-        <div
-          id="items-main"
-          class="mb-auto h-10 flex-1 flex flex-col gap-2 ml-1"
-        >
+        <div class="mb-auto h-10 flex-1 flex flex-col gap-2 ml-1 itemContainer">
           <div
-            id="item"
-            class="bg-[#E6E5E6] p-4 rounded-lg shadow-lg border-1 border-gray-50"
+            class="bg-[#E6E5E6] p-4 rounded-lg shadow-lg border-1 border-gray-50 cursor-pointer item"
           >
             Task 3
           </div>
 
           <div
-            id="item"
-            class="bg-[#E6E5E6] p-4 rounded-lg shadow-lg border-1 border-gray-50"
+            class="bg-[#E6E5E6] p-4 rounded-lg shadow-lg border-1 border-gray-50 cursor-pointer item"
           >
             Task 6
           </div>
@@ -60,10 +54,10 @@
           </button>
         </div>
       </div>
-      <div
-        id="items"
-        class="bg-[#DCDDE0] w-96 rounded-lg flex flex-col p-4 gap-2"
-      >
+
+      <!-- Doing Items Container -->
+      <div class="bg-[#DCDDE0] w-96 rounded-lg flex flex-col p-4 gap-2">
+        <!-- Header  -->
         <div id="items-header" class="font-semibold flex gap-2 items-center">
           <div class="rounded-full p-2 border-2 border-[#e5ed9b]"></div>
           <div>Doing</div>
@@ -74,47 +68,42 @@
             5
           </div>
         </div>
-        <div
-          id="items-main"
-          class="mb-auto h-10 flex-1 flex flex-col gap-2 ml-1"
-        >
+
+        <!-- Main -->
+        <div class="mb-auto h-10 flex-1 flex flex-col gap-2 ml-1 itemContainer">
           <div
-            id="item"
-            class="bg-[#E6E5E6] p-4 rounded-lg shadow-lg border-1 border-gray-50"
+            class="bg-[#E6E5E6] p-4 rounded-lg shadow-lg border-1 border-gray-50 cursor-pointer item"
           >
             Task 7
           </div>
 
           <div
-            id="item"
-            class="bg-[#E6E5E6] p-4 rounded-lg shadow-lg border-1 border-gray-50"
+            class="bg-[#E6E5E6] p-4 rounded-lg shadow-lg border-1 border-gray-50 cursor-pointer item"
           >
             Task 1
           </div>
 
           <div
-            id="item"
-            class="bg-[#E6E5E6] p-4 rounded-lg shadow-lg border-1 border-gray-50"
+            class="bg-[#E6E5E6] p-4 rounded-lg shadow-lg border-1 border-gray-50 cursor-pointer item"
           >
             Task 2
           </div>
 
           <div
-            id="item"
-            class="bg-[#E6E5E6] p-4 rounded-lg shadow-lg border-1 border-gray-50"
+            class="bg-[#E6E5E6] p-4 rounded-lg shadow-lg border-1 border-gray-50 cursor-pointer item"
           >
             Task 4
           </div>
 
           <div
-            id="item"
-            class="bg-[#E6E5E6] p-4 rounded-lg shadow-lg border-1 border-gray-50"
+            class="bg-[#E6E5E6] p-4 rounded-lg shadow-lg border-1 border-gray-50 cursor-pointer item"
           >
             Task 5
           </div>
         </div>
+        <!-- Footer -->
         <div id="items-footer" class="h-10 flex text-[#9D9EA3]">
-          <button id="btnAddTodo" class="flex items-center gap-2">
+          <button id="btnAddDoing" class="flex items-center gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -133,10 +122,9 @@
           </button>
         </div>
       </div>
-      <div
-        id="items"
-        class="bg-[#DCDDE0] w-96 rounded-lg flex flex-col p-4 gap-2"
-      >
+      <!-- Done Items Container -->
+      <div class="bg-[#DCDDE0] w-96 rounded-lg flex flex-col p-4 gap-2">
+        <!-- header div -->
         <div id="items-header" class="font-semibold flex gap-2 items-center">
           <div class="rounded-full p-2 border-2 border-[#bdf3a3]"></div>
           <div>Done</div>
@@ -147,33 +135,29 @@
             2
           </div>
         </div>
-        <div
-          id="items-main"
-          class="mb-auto h-10 flex-1 flex flex-col gap-2 ml-1"
-        >
+        <!-- main div -->
+        <div class="mb-auto h-10 flex-1 flex flex-col gap-2 ml-1 itemContainer">
           <div
-            id="item"
-            class="bg-[#E6E5E6] p-4 rounded-lg shadow-lg border-1 border-gray-50"
+            class="bg-[#E6E5E6] p-4 rounded-lg shadow-lg border-1 border-gray-5 cursor-pointer item"
           >
             Task 9
           </div>
 
           <div
-            id="item"
-            class="bg-[#E6E5E6] p-4 rounded-lg shadow-lg border-1 border-gray-50"
+            class="bg-[#E6E5E6] p-4 rounded-lg shadow-lg border-1 border-gray-50 cursor-pointer item"
           >
             Task 8
           </div>
 
           <div
-            id="item"
-            class="bg-[#E6E5E6] p-4 rounded-lg shadow-lg border-1 border-gray-50"
+            class="bg-[#E6E5E6] p-4 rounded-lg shadow-lg border-1 border-gray-50 cursor-pointer item"
           >
             Task 10
           </div>
         </div>
+        <!-- footer div -->
         <div id="items-footer" class="h-10 flex text-[#9D9EA3]">
-          <button id="btnAddTodo" class="flex items-center gap-2">
+          <button id="btnAddDone" class="flex items-center gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -193,16 +177,20 @@
         </div>
       </div>
     </div>
+    <!-- modal -->
     <div
       id="modal"
-      class="fixed inset-0 backdrop-blur-sm overflow-x-hidden overflow-y-auto flex items-center justify-center z-0"
+      class="fixed inset-0 backdrop-blur-sm overflow-x-hidden overflow-y-auto items-center justify-center z-0 flex hidden"
     >
       <div
+        id="modalContainer"
         class="flex bg-[#fffeff] min-w-80 flex-col p-4 rounded-2xl shadow-xl gap-3"
       >
         <div class="flex items-center justify-between">
           <label class="font-semibold">Title</label>
-          <img width="25px" src="assets/cross.svg" />
+          <button id="btnClose" class="hover:bg-gray-300">
+            <img width="25px" src="assets/cross.svg" />
+          </button>
         </div>
         <div class="border-t border-gray-200"></div>
         <div class="flex flex-col gap-1 font-semibold">
