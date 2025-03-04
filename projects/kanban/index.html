@@ -11,29 +11,70 @@
     <div id="main" class="flex h-screen bg-[#E6E5E6] p-4 pb-4 gap-2">
       <!-- Todo Items Container -->
       <div class="bg-[#DCDDE0] w-96 rounded-lg flex flex-col p-4 gap-2">
+        <!-- header -->
         <div id="items-header" class="font-semibold flex gap-2 items-center">
           <div class="rounded-full p-2 border-2 border-[#bdf3a3]"></div>
           <div>To Do</div>
 
           <div
+            id="todoCounter"
             class="text-gray-500 h-6 w-6 rounded-full bg-gray-300 p-1 flex items-center justify-center"
           >
             2
           </div>
         </div>
-        <div class="mb-auto h-10 flex-1 flex flex-col gap-2 ml-1 itemContainer">
-          <div
-            class="bg-[#E6E5E6] p-4 rounded-lg shadow-lg border-1 border-gray-50 cursor-pointer item"
-          >
-            Task 3
-          </div>
 
-          <div
-            class="bg-[#E6E5E6] p-4 rounded-lg shadow-lg border-1 border-gray-50 cursor-pointer item"
+        <!-- Main Board -->
+        <div
+          id="itemContainer-todo"
+          class="mb-auto h-10 flex-1 flex flex-col gap-4 ml-1 itemContainer"
+        >
+          <!-- <div
+            class="bg-[#E6E5E6] p-4 rounded-lg shadow-lg border-1 border-gray-50 cursor-pointer item relative flex flex-col"
           >
-            Task 6
-          </div>
+            <div>Task 3</div>
+            <span class="text-xs text-[#9D9EA3] item-desciption"
+              >This is description</span
+            >
+
+            <div class="absolute right-1 -top-3 flex gap-2">
+              <button class="text-green-900 text-xs w-5 h-5 rounded-l btnEdit">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
+                  />
+                </svg>
+              </button>
+              <button class="text-red-900 text-xs w-5 h-5 rounded-l btnDelete">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div> -->
         </div>
+
+        <!-- footer -->
         <div id="items-footer" class="h-10 flex text-[#9D9EA3]">
           <button id="btnAddTodo" class="flex items-center gap-2">
             <svg
@@ -63,6 +104,7 @@
           <div>Doing</div>
 
           <div
+            id="doingCounter"
             class="text-gray-500 h-6 w-6 rounded-full bg-gray-300 p-1 flex items-center justify-center"
           >
             5
@@ -70,37 +112,10 @@
         </div>
 
         <!-- Main -->
-        <div class="mb-auto h-10 flex-1 flex flex-col gap-2 ml-1 itemContainer">
-          <div
-            class="bg-[#E6E5E6] p-4 rounded-lg shadow-lg border-1 border-gray-50 cursor-pointer item"
-          >
-            Task 7
-          </div>
-
-          <div
-            class="bg-[#E6E5E6] p-4 rounded-lg shadow-lg border-1 border-gray-50 cursor-pointer item"
-          >
-            Task 1
-          </div>
-
-          <div
-            class="bg-[#E6E5E6] p-4 rounded-lg shadow-lg border-1 border-gray-50 cursor-pointer item"
-          >
-            Task 2
-          </div>
-
-          <div
-            class="bg-[#E6E5E6] p-4 rounded-lg shadow-lg border-1 border-gray-50 cursor-pointer item"
-          >
-            Task 4
-          </div>
-
-          <div
-            class="bg-[#E6E5E6] p-4 rounded-lg shadow-lg border-1 border-gray-50 cursor-pointer item"
-          >
-            Task 5
-          </div>
-        </div>
+        <div
+          id="itemContainer-doing"
+          class="mb-auto h-10 flex-1 flex flex-col gap-4 ml-1 itemContainer"
+        ></div>
         <!-- Footer -->
         <div id="items-footer" class="h-10 flex text-[#9D9EA3]">
           <button id="btnAddDoing" class="flex items-center gap-2">
@@ -130,31 +145,17 @@
           <div>Done</div>
 
           <div
+            id="doneCounter"
             class="text-gray-500 h-6 w-6 rounded-full bg-gray-300 p-1 flex items-center justify-center"
           >
             2
           </div>
         </div>
         <!-- main div -->
-        <div class="mb-auto h-10 flex-1 flex flex-col gap-2 ml-1 itemContainer">
-          <div
-            class="bg-[#E6E5E6] p-4 rounded-lg shadow-lg border-1 border-gray-5 cursor-pointer item"
-          >
-            Task 9
-          </div>
-
-          <div
-            class="bg-[#E6E5E6] p-4 rounded-lg shadow-lg border-1 border-gray-50 cursor-pointer item"
-          >
-            Task 8
-          </div>
-
-          <div
-            class="bg-[#E6E5E6] p-4 rounded-lg shadow-lg border-1 border-gray-50 cursor-pointer item"
-          >
-            Task 10
-          </div>
-        </div>
+        <div
+          id="itemContainer-done"
+          class="mb-auto h-10 flex-1 flex flex-col gap-4 ml-1 itemContainer"
+        ></div>
         <!-- footer div -->
         <div id="items-footer" class="h-10 flex text-[#9D9EA3]">
           <button id="btnAddDone" class="flex items-center gap-2">
@@ -186,19 +187,26 @@
         id="modalContainer"
         class="flex bg-[#fffeff] min-w-80 flex-col p-4 rounded-2xl shadow-xl gap-3"
       >
+        <!-- name -->
         <div class="flex items-center justify-between">
           <label class="font-semibold">Title</label>
           <button id="btnClose" class="hover:bg-gray-300">
             <img width="25px" src="assets/cross.svg" />
           </button>
         </div>
+        <!-- border -->
         <div class="border-t border-gray-200"></div>
+        <!-- name -->
         <div class="flex flex-col gap-1 font-semibold">
           <label>Name</label>
-          <input type="text" class="border-1 border-gray-200 rounded-lg" />
+          <input
+            id="inputName"
+            type="text"
+            class="border-1 border-gray-200 rounded-lg pl-2 py-1"
+          />
         </div>
-
-        <div class="flex flex-col gap-1 font-semibold">
+        <!-- Colors -->
+        <div class="hidden flex-col gap-1 font-semibold">
           <label>Colors</label>
           <div class="flex gap-1">
             <div class="rounded-full p-0.5 border-2 border-[#bdf3a3] flex">
@@ -219,14 +227,27 @@
           </div>
         </div>
 
+        <!-- description -->
         <div class="flex flex-col gap-1 font-semibold">
           <label>Description</label>
-          <input type="text" class="border-1 border-gray-200 rounded-lg" />
+          <input
+            id="inputDescription"
+            type="text"
+            class="border-1 border-gray-200 rounded-lg pl-2 py-1"
+          />
         </div>
+
+        <!-- border -->
         <div class="border-t border-gray-200 mt-5"></div>
+
+        <!-- buttons -->
         <div class="flex gap-2 justify-end">
-          <button class="px-4 py-2 bg-gray-100 rounded-lg">Cancel</button>
-          <button class="px-4 py-2 bg-green-400 rounded-lg">Submit</button>
+          <button id="btnCancel" class="px-4 py-2 bg-gray-100 rounded-lg">
+            Cancel
+          </button>
+          <button id="btnSubmit" class="px-4 py-2 bg-green-400 rounded-lg">
+            Submit
+          </button>
         </div>
       </div>
     </div>
