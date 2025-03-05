@@ -128,7 +128,10 @@ function showItem(item) {
   minusButton.addEventListener("click", () => {
     const { updatedQty, updatedTotal } = updateQty(item, "Remove");
 
-    if (!updatedQty) cartItemsElement.removeChild(cartItem);
+    if (!updatedQty) {
+      deleteItem(item);
+      cartItemsElement.removeChild(cartItem);
+    }
     qty.textContent = updatedQty;
     price.textContent = updatedTotal;
   });
