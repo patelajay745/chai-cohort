@@ -17,12 +17,38 @@ body {
   padding: 15px;
   border-radius: 8px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .product img {
-  width: 100%;
-  max-width: 150px;
+  width: auto;
   height: auto;
+  max-width: 150px;
+ 
+}
+
+.product .btnAdd {
+	background-color:#c79345;
+	border-radius:28px;
+	border:1px solid #ffffff;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	padding:13px 33px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+.btnAdd:hover {
+	background-color:#fc8d05;
+}
+.btnAdd:active {
+	position:relative;
+	top:1px;
 }
 
 .cart {
@@ -54,4 +80,73 @@ button {
   text-align: center;
   color: #666;
   padding: 20px;
+}
+
+.cart-item .show-price{
+  display: flex;
+  gap: 10px;
+}
+
+.show-price .counter-button{
+  border-radius: 20px;
+  border: none;
+}
+
+.show-price .qty{
+  display: flex;
+  align-items: center;
+}
+
+.show-price .price{
+  display: flex;
+  align-items: center;
+}
+
+.show-price .remove-button{
+  border-radius: 20px;
+  border: none;
+}
+
+.show-price .counter-button {
+  width: 30px;
+	background:linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
+	background-color:#7892c2;
+	border-radius:40px;
+	border:1px solid #4e6096;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:21px;
+	padding:8px 7px;
+	text-decoration:none;
+}
+.show-price .counter-button:hover {
+	background:linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
+	background-color:#476e9e;
+}
+.show-price .counter-button:active {
+	position:relative;
+	top:1px;
+}
+
+.show-price .remove-button {
+	background-color:#4566c7;
+	border-radius:28px;
+	border:1px solid #ffffff;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	padding:12px 22px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+.show-price .remove-button:hover {
+	background-color:#bd2a2a;
+}
+.show-price .remove-button:active {
+	position:relative;
+	top:1px;
 }
