@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  </head>
+  <body>
+    <div class="h-screen flex bg-[#f3f3f5] justify-center items-center">
+      <div class="w-96 bg-white flex flex-col p-4 rounded-lg shadow-xl gap-4">
+        <div class="flex justify-center">
+          <h1 class="text-3xl font-bold">BMI Calculator</h1>
+        </div>
+        <div class="flex flex-col gap-1">
+          <label class="text-[#a59fa7]">Age</label>
+          <input
+            class="border-gray-300 border-1 rounded-lg p-2"
+            type="text"
+            id="age"
+            placeholder="Enter your Age"
+            onkeyup="this.value=this.value.replace(/[^\d]/,'')"
+          />
+        </div>
+        <div class="flex flex-col gap-1">
+          <label class="text-[#a59fa7]">Height(cm)</label>
+          <input
+            class="border-gray-300 border-1 rounded-lg p-2"
+            type="text"
+            id="height"
+            placeholder="Enter your height in cm"
+            onkeyup="this.value=this.value.replace(/[^\d]/,'')"
+          />
+        </div>
+        <div class="flex flex-col gap-1">
+          <label class="text-[#a59fa7]">Weight(kg)</label>
+          <input
+            class="border-gray-300 border-1 rounded-lg p-2"
+            type="text"
+            id="weight"
+            placeholder="Enter your Weight"
+            onkeyup="this.value=this.value.replace(/[^\d]/,'')"
+          />
+        </div>
+        <div class="flex flex-col gap-1">
+          <label class="text-[#a59fa7]">Gender</label>
+          <select
+            class="border-gray-300 border-1 rounded-lg p-2"
+            type="text"
+            id="gender"
+            placeholder="19"
+          >
+            <option value="select">Select gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </div>
+        <div class="flex flex-col gap-1">
+          <button
+            id="btnSubmit"
+            class="px-12 py-3 text-center text-white bg-blue-500 rounded-lg"
+          >
+            Submit
+          </button>
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <label
+            id="result"
+            class="text-center text-3xl font-bold text-green-500"
+          ></label>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
