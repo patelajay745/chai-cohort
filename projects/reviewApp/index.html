@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Write your review</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <style>
+      .star:hover,
+      .star.hovered,
+      .star.active {
+        color: #fbbf24; /* Tailwind amber-400 */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg-white flex items-center justify-center">
+      <div class="container bg-[#F6F6F6] flex py-6 px-10 gap-4">
+        <!-- card for rating -->
+        <div
+          class="bg-white w-1/3 rounded-xl shadow-2xl flex flex-col px-4 py-8 h-full gap-6"
+        >
+          <div>
+            <h1 class="text-3xl font-bold">Share your Experince</h1>
+            <label class="text-[#818181] text-sm"
+              >Please rate your experince and leave a review.</label
+            >
+          </div>
+          <div class="pl-2">
+            <label class="font-semibold text-xl">Rating</label>
+            <div
+              class="flex space-x-2 text-3xl text-gray-400 cursor-pointer"
+              id="starRating"
+            >
+              <span class="star" data-value="1">★</span>
+              <span class="star" data-value="2">★</span>
+              <span class="star" data-value="3">★</span>
+              <span class="star" data-value="4">★</span>
+              <span class="star" data-value="5">★</span>
+            </div>
+          </div>
+          <div class="pl-2 flex flex-col">
+            <label class="font-semibold text-xl">Name</label>
+            <input
+              id="name"
+              type="text"
+              placeholder="Your name"
+              class="border-1 rounded-lg border-[#c8c8c8] p-2"
+            />
+          </div>
+
+          <div class="pl-2 flex flex-col">
+            <label class="font-semibold text-xl">Your Review</label>
+            <textarea
+              id="review"
+              rows="10"
+              cols="50"
+              placeholder="Tell us about your experince"
+              class="border-1 rounded-lg border-[#c8c8c8] p-2"
+            >
+            </textarea>
+          </div>
+          <div>
+            <button
+              id="btnSubmit"
+              class="bg-blue-500 text-white rounded-xl w-full py-3"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+
+        <!-- Showcase reviews -->
+        <div
+          id="showReview"
+          class="flex-1 bg-white w-full rounded-2xl shadow-2xl flex flex-col p-4 gap-2"
+        >
+          <!-- a review -->
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
