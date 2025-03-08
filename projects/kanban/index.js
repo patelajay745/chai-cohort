@@ -16,14 +16,17 @@ const inputNameElement = document.getElementById("inputName");
 const todoCounterElement = document.getElementById("todoCounter");
 const doingCounterElement = document.getElementById("doingCounter");
 const doneCounterElement = document.getElementById("doneCounter");
+const mainDiv = document.getElementById("main");
+const addBoardElement = document.getElementById("addboard");
+const descDivOfModalElement = document.getElementById("descDivOfModal");
 
 let selectedBoard = null;
-let numberOfTodoTask;
-let numberOfDoingTask;
-let numberOfDoneTask;
 let idToEditItem;
+let idToEditBoard;
 
 let data = loadDataFromLocalStorage();
+
+let boards = loadBoardFromLocalStorage();
 
 // let data = [
 //   {
@@ -73,16 +76,50 @@ let data = loadDataFromLocalStorage();
 document.addEventListener("DOMContentLoaded", loadData);
 
 // openCloseModal
-function openCloseModal(board = "", actionType = "open") {
+function openCloseModal(
+  board = "",
+  actionType = "open",
+  type = "",
+  editBoardId = ""
+) {
   selectedBoard = board;
   modalElement.classList.toggle("hidden");
   if (actionType === "close") {
     inputDescriptionElement.value = "";
     inputNameElement.value = "";
+    idToEditItem = null;
+    idToEditBoard = null;
+
+    console.log("reached to close");
+    return;
   } else {
     if (idToEditItem) {
-      loadTaskIntoModal(idToEditItem);
+      const modalTitle = document.getElementById("modalTitle");
+      modalTitle.textContent = "Edit task";
       btnSubmit.textContent = "Save";
+      descDivOfModalElement.classList.remove("hidden");
+      descDivOfModalElement.classList.add("flex");
+      loadTaskIntoModal(idToEditItem);
+    } else if (editBoardId && type === "editBoard") {
+      idToEditBoard = editBoardId;
+      const modalTitle = document.getElementById("modalTitle");
+      modalTitle.textContent = "Update Board";
+      btnSubmit.textContent = "Update Board";
+      descDivOfModalElement.classList.remove("flex");
+      descDivOfModalElement.classList.add("hidden");
+      loadBoardIntoModal(idToEditBoard);
+    } else if (type === "newBoard") {
+      const modalTitle = document.getElementById("modalTitle");
+      modalTitle.textContent = "Add new Board";
+      btnSubmit.textContent = "Create Board";
+      descDivOfModalElement.classList.remove("flex");
+      descDivOfModalElement.classList.add("hidden");
+    } else {
+      const modalTitle = document.getElementById("modalTitle");
+      modalTitle.textContent = "Add task";
+      btnSubmit.textContent = "Create";
+      descDivOfModalElement.classList.remove("hidden");
+      descDivOfModalElement.classList.add("flex");
     }
   }
 }
@@ -97,16 +134,13 @@ function attachDraggClass(target) {
   });
 }
 
-btnAddTodoElement.addEventListener("click", () => openCloseModal("todo"));
-btnAddDoingElement.addEventListener("click", () => openCloseModal("doing"));
-btnAddDoneElement.addEventListener("click", () => openCloseModal("done"));
 btnCloseElement.addEventListener("click", () => openCloseModal(null, "close"));
 btnCancel.addEventListener("click", () => openCloseModal(null, "close"));
 
 modalContainer.addEventListener("click", (event) => {
   event.stopPropagation();
 });
-modalElement.addEventListener("click", openCloseModal);
+modalElement.addEventListener("click", () => openCloseModal(null, "close"));
 
 // Adding draggable to all predifined items
 const allItemsElement = document.getElementsByClassName("item");
@@ -115,41 +149,47 @@ const allItemsElement = document.getElementsByClassName("item");
 [].forEach.call(allItemsElement, attachDraggClass);
 
 // detect hover on effect
-const allItemContainersElement = document.querySelectorAll(".itemContainer");
-
-allItemContainersElement.forEach(function (itemContainer) {
-  itemContainer.addEventListener("dragover", function (event) {
-    event.preventDefault(); // Allow dropping
-  });
-  itemContainer.addEventListener("drop", function () {
-    const flayingElement = document.querySelector(".flying");
-    const hiddenSpan = flayingElement.querySelector("span.hidden");
-    // console.log(hiddenSpan.textContent);
-    // console.log(flayingElement);
-    // console.log(itemContainer.id.split("-")[1]);
-
-    const currentBoard = itemContainer.id.split("-")[1];
-
-    data = data.map((item) => {
-      if (item.id === Number(hiddenSpan.textContent.trim())) {
-        return {
-          ...item,
-          board: currentBoard,
-        };
-      }
-      return item;
-    });
-    saveDataToDataStorage();
-    updateCounter();
-
-    itemContainer.appendChild(flayingElement);
-  });
-});
+let allItemContainersElement;
 
 // adding new item
 btnSubmitElement.addEventListener("click", () => {
+  if (btnSubmitElement.textContent.trim() === "Create Board") {
+    createNewBoard();
+    openCloseModal(null, "close");
+    return;
+  }
+
+  if (btnSubmitElement.textContent.trim() === "Update Board") {
+    // console.log("clicked to edit board");
+
+    const newName = inputNameElement.value.trim();
+
+    updateBoard(idToEditBoard, newName);
+
+    // idToEditBoard reset it here
+    idToEditBoard = "";
+    return;
+  }
+
   idToEditItem ? updateItem() : createNewItem();
 });
+
+function updateBoard(idToEditBoard, newName) {
+  boards = boards.map((board) => {
+    if (board.id === Number(idToEditBoard)) {
+      return {
+        ...board,
+        name: newName,
+      };
+    }
+
+    return board;
+  });
+
+  loadData();
+  saveDataToDataStorage();
+  openCloseModal(null, "close");
+}
 
 function updateItem() {
   const title = inputNameElement.value;
@@ -166,6 +206,7 @@ function updateItem() {
     return item;
   });
 
+  idToEditItem = "";
   loadData();
   saveDataToDataStorage();
   openCloseModal(null, "close");
@@ -175,7 +216,6 @@ function createNewItem() {
   const title = inputNameElement.value;
   const description = inputDescriptionElement.value;
   const id = randomId(1000000, 9999999);
-  const currentBoard = getboardElement();
 
   data = [...data, { id, title, description, board: selectedBoard }];
 
@@ -209,7 +249,19 @@ function addEditButtonListner(target) {
     const parentElement = target.parentElement.parentElement;
     const hiddenSpan = parentElement.querySelector("span.hidden");
 
-    idToEditItem = Number(hiddenSpan.textContent.trim());
+    if (parentElement.dataset.boardId) {
+      const boardId = parentElement.dataset.boardId
+        .toString()
+        .trim()
+        .split("-")[1];
+
+      if (boardId) {
+        openCloseModal(null, "open", "editBoard", boardId);
+        return;
+      }
+    }
+
+    if (hiddenSpan) idToEditItem = Number(hiddenSpan.textContent.trim());
     openCloseModal(null, "open");
   });
 }
@@ -218,7 +270,27 @@ function addDeleteButtonListner(target) {
   target.addEventListener("click", function () {
     const parentElement = target.parentElement.parentElement;
     const hiddenSpan = parentElement.querySelector("span.hidden");
-    console.log(typeof hiddenSpan.textContent);
+
+    if (parentElement.dataset.boardId) {
+      const boardId = parentElement.dataset.boardId
+        .toString()
+        .trim()
+        .split("-")[1];
+
+      if (boardId) {
+        boards = boards.filter((board) => Number(board.id) !== Number(boardId));
+        data = data.filter((item) => Number(item.board) !== Number(boardId));
+      }
+
+      console.log(boards);
+      console.log(data);
+
+      loadData();
+      saveDataToDataStorage();
+      updateCounter();
+
+      return;
+    }
 
     data = data.filter(
       (item) => item.id !== Number(hiddenSpan.textContent.trim())
@@ -227,6 +299,7 @@ function addDeleteButtonListner(target) {
     loadData();
     saveDataToDataStorage();
     updateCounter();
+
     // console.log(target.parentElement.parentElement.textContent.trim());
   });
 }
@@ -319,20 +392,21 @@ function createButtonDiv() {
 }
 
 function loadData() {
-  clearBoard(todoBoard);
-  clearBoard(doingBoard);
-  clearBoard(doneBoard);
+  mainDiv.innerHTML = "";
+
+  boards.map((board) => {
+    const boardDiv = createBoardDiv(board.name, board.id);
+    mainDiv.appendChild(boardDiv);
+  });
 
   data.map(({ id, title, description, board }) => {
-    switch (board) {
-      case "todo":
-        return showItemCard(id, title, description, todoBoard);
-      case "doing":
-        return showItemCard(id, title, description, doingBoard);
-      case "done":
-        return showItemCard(id, title, description, doneBoard);
-    }
+    // console.log(board);
+    const boardElement = document.getElementById(`itemContainer-${board}`);
+    // console.log(boardElement);
+    showItemCard(id, title, description, boardElement);
   });
+
+  findAllContainer();
 
   updateCounter();
 }
@@ -393,29 +467,26 @@ function randomId(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-// clear pre-show data from dom
-function clearBoard(boardElement) {
-  while (boardElement.firstChild) {
-    boardElement.removeChild(boardElement.firstChild);
-  }
-}
-
 function saveDataToDataStorage() {
-  localStorage.setItem("tasks", JSON.stringify(data));
+  localStorage.setItem("newTasks", JSON.stringify(data));
+  localStorage.setItem("boards", JSON.stringify(boards));
 }
 
 function loadDataFromLocalStorage() {
-  const storedTasks = localStorage.getItem("tasks");
+  const storedTasks = localStorage.getItem("newTasks");
   return storedTasks ? JSON.parse(storedTasks) : [];
 }
 
 function updateCounter() {
-  numberOfTodoTask = data.filter((item) => item.board === "todo").length;
-  numberOfDoingTask = data.filter((item) => item.board === "doing").length;
-  numberOfDoneTask = data.filter((item) => item.board === "done").length;
-  todoCounterElement.textContent = numberOfTodoTask;
-  doingCounterElement.textContent = numberOfDoingTask;
-  doneCounterElement.textContent = numberOfDoneTask;
+  boards.map((board) => {
+    const boardCounter = document.getElementById(`${board.id}-Counter`);
+
+    const count = data.filter(
+      (item) => Number(board.id) === Number(item.board)
+    ).length;
+
+    boardCounter.textContent = count;
+  });
 }
 
 function loadTaskIntoModal(taskId) {
@@ -427,4 +498,164 @@ function loadTaskIntoModal(taskId) {
     inputNameElement.value = task.title;
     inputDescriptionElement.value = task.description;
   }
+}
+
+function loadBoardIntoModal(boardId) {
+  const board = boards.find((b) => b.id === Number(boardId));
+
+  if (board) {
+    inputNameElement.value = board.name;
+  }
+}
+
+//load board
+function loadBoardFromLocalStorage() {
+  const storedBoards = localStorage.getItem("boards");
+  return storedBoards
+    ? JSON.parse(storedBoards)
+    : [
+        { id: 1, name: "Todo" },
+        { id: 2, name: "Doing" },
+        { id: 3, name: "Done" },
+      ];
+}
+
+//save boards to local storage
+function storeBoardFromLocalStorage() {
+  localStorage.setItem("boards", JSON.stringify(boards));
+}
+
+//create board
+function createBoardDiv(boardName, id = null) {
+  // main div
+  const boardDiv = document.createElement("div");
+  boardDiv.className =
+    "bg-[#DCDDE0] w-96 rounded-lg flex flex-col p-4 gap-2 relative";
+
+  //for adding editing and deleting button div
+  const childDiv = createButtonDiv();
+
+  //don't show edit and delete button to default 3 boards
+  if (id > 3) boardDiv.appendChild(childDiv);
+
+  if (!id) {
+    id = randomId(1000000, 9999999);
+  }
+  // Add hidden ID
+  const uniqueId = `board-${id}`;
+  boardDiv.dataset.boardId = uniqueId;
+
+  //header
+  const headerDiv = document.createElement("div");
+  headerDiv.id = "items-header";
+  headerDiv.className = "font-semibold flex gap-2 items-center";
+
+  const circleDiv = document.createElement("div");
+  circleDiv.className = "rounded-full p-2 border-2 border-[#bdf3a3]";
+
+  const titleDiv = document.createElement("div");
+  titleDiv.textContent = boardName;
+
+  const counterDiv = document.createElement("div");
+  counterDiv.id = `${id}-Counter`;
+  counterDiv.className =
+    "text-gray-500 h-6 w-6 rounded-full bg-gray-300 p-1 flex items-center justify-center";
+  counterDiv.textContent = "0";
+
+  headerDiv.appendChild(circleDiv);
+  headerDiv.appendChild(titleDiv);
+  headerDiv.appendChild(counterDiv);
+
+  //  main board container
+  const mainContainer = document.createElement("div");
+  mainContainer.id = `itemContainer-${id}`;
+  mainContainer.className =
+    "mb-auto h-10 flex-1 flex flex-col gap-4 ml-1 itemContainer";
+
+  // footer
+  const footerDiv = document.createElement("div");
+  footerDiv.id = "items-footer";
+  footerDiv.className = "h-10 flex text-[#9D9EA3] justify-end ";
+
+  const addSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  addSvg.setAttribute("fill", "none");
+  addSvg.setAttribute("viewBox", "0 0 24 24");
+  addSvg.setAttribute("stroke-width", "1.5");
+  addSvg.setAttribute("stroke", "currentColor");
+  addSvg.classList.add("size-10");
+
+  const addPath = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "path"
+  );
+  addPath.setAttribute("stroke-linecap", "round");
+  addPath.setAttribute("stroke-linejoin", "round");
+  addPath.setAttribute("d", "M12 4.5v15m7.5-7.5h-15");
+
+  addSvg.appendChild(addPath);
+
+  // addButton.appendChild(document.createTextNode("Add item"));
+
+  addSvg.addEventListener("click", function () {
+    openCloseModal(id);
+  });
+
+  footerDiv.appendChild(addSvg);
+
+  // append all child
+  boardDiv.appendChild(headerDiv);
+  boardDiv.appendChild(mainContainer);
+  boardDiv.appendChild(footerDiv);
+
+  return boardDiv;
+}
+
+// find all item-containers
+function findAllContainer() {
+  allItemContainersElement = document.querySelectorAll(".itemContainer");
+  allItemContainersElement.forEach(function (itemContainer) {
+    itemContainer.addEventListener("dragover", function (event) {
+      event.preventDefault(); // Allow dropping
+    });
+    itemContainer.addEventListener("drop", function () {
+      const flayingElement = document.querySelector(".flying");
+      const hiddenSpan = flayingElement.querySelector("span.hidden");
+      // console.log(hiddenSpan.textContent);
+      // console.log(flayingElement);
+      // console.log(itemContainer.id.split("-")[1]);
+
+      const currentBoard = itemContainer.id.split("-")[1];
+
+      data = data.map((item) => {
+        if (item.id === Number(hiddenSpan.textContent.trim())) {
+          return {
+            ...item,
+            board: currentBoard,
+          };
+        }
+        return item;
+      });
+      saveDataToDataStorage();
+      updateCounter();
+
+      itemContainer.appendChild(flayingElement);
+    });
+  });
+}
+
+addBoardElement.addEventListener("click", function () {
+  openCloseModal("", "open", "newBoard");
+});
+
+function createNewBoard() {
+  const nameForBoard = inputNameElement.value.trim();
+
+  // { id: 3, name: "Done" },
+
+  const randomIdForBoard = randomId(10000, 99999);
+
+  boards = [...boards, { id: randomIdForBoard, name: nameForBoard }];
+
+  saveDataToDataStorage();
+  loadData();
 }
