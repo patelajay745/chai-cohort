@@ -1,21 +1,48 @@
 const startButton = document.getElementById("startButton");
 const timeInput = document.getElementById("timeInput");
 const notificationElement = document.getElementById("countdownDisplay");
+const pauseButton = document.getElementById("pauseButton");
+const stopButton = document.getElementById("stopButton");
+const timerDiv = document.getElementById("timerDiv");
 
 let timerId;
+let count;
+
+function pause(id) {
+  clearInterval(id);
+}
+
+function resume() {
+  startTimer(count);
+}
 
 function stopTimer() {
   clearInterval(timerId);
-  timeInput.classList.remove("disabel");
-  startButton.textContent = "Start";
+  stopButton.classList.add("disable");
+  pauseButton.classList.add("disable");
+  stopButton.textContent = "Clear";
 }
 
-startButton.addEventListener("click", function () {
-  if (this.textContent === "Stop") {
-    stopTimer();
-    notificationElement.textContent = "";
+pauseButton.addEventListener("click", () => {
+  if (!count) {
+    return;
   }
 
+  if (pauseButton.textContent.trim() === "Pause") {
+    pauseButton.textContent = "Resume";
+    pause(timerId);
+  } else {
+    pauseButton.textContent = "Pause";
+    resume();
+  }
+});
+
+stopButton.addEventListener("click", function () {
+  stopTimer();
+  toggleTimerDiv();
+});
+
+startButton.addEventListener("click", function () {
   const userSeconds = timeInput.value.toString().trim();
   if (!userSeconds) {
     return;
@@ -24,7 +51,17 @@ startButton.addEventListener("click", function () {
   clearInterval(timerId);
   startTimer(userSeconds);
   timeInput.value = "";
+
+  toggleTimerDiv("Show");
 });
+
+function toggleTimerDiv(type = "Hide") {
+  if (type === "Show") {
+    timerDiv.classList.remove("hidden");
+  } else {
+    timerDiv.classList.add("hidden");
+  }
+}
 
 timeInput.focus(function () {
   const regex = /^\d+$/;
@@ -42,9 +79,9 @@ timeInput.addEventListener("input", function () {
 
 function startTimer(seconds) {
   notificationElement.innerHTML = "";
-  let count = Number(seconds);
+  count = Number(seconds);
   timeInput.classList.add("disabel");
-  startButton.textContent = "Stop";
+  stopButton.textContent = "Stop";
   notificationElement.textContent = `Time remaining ${count
     .toString()
     .padStart(2, "0")} seconds`;
@@ -62,4 +99,6 @@ function startTimer(seconds) {
       stopTimer();
     }
   }, 1000);
+
+  return timerId;
 }

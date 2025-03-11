@@ -25,10 +25,26 @@
         </button>
       </div>
       <hr class="text-gray-300 mt-4" />
-      <p
-        class="mt-4 text-center text-xl text-blue-500"
-        id="countdownDisplay"
-      ></p>
+
+      <div id="timerDiv" class="hidden">
+        <p class="mt-4 text-center text-xl text-blue-500" id="countdownDisplay">
+          gfg
+        </p>
+        <div class="flex gap-2 items-center justify-center mt-4">
+          <button
+            id="pauseButton"
+            class="bg-yellow-500 hover:bg-yellow-600 text-white p-2 px-6 rounded-xl w-full shadow-md text-lg"
+          >
+            Pause
+          </button>
+          <button
+            id="stopButton"
+            class="bg-red-500 hover:bg-red-600 text-white p-2 px-6 rounded-xl w-full shadow-md text-lg"
+          >
+            Stop
+          </button>
+        </div>
+      </div>
     </div>
 
     <script src="app.js"></script>
