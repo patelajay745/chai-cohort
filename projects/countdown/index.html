@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  </head>
+  <body class="bg-gray-300 flex items-center h-screen justify-center">
+    <div class="p-8 bg-white rounded-xl shadow-xl flex flex-col">
+      <h1 class="font-semibold text-3xl text-center">CountDown Timer</h1>
+      <div class="w-auto flex mt-6">
+        <input
+          class="hover:border-0 rounded-tl-xl rounded-bl-xl bg-slate-200 p-2 px-6 w-auto shadow-md"
+          type="number"
+          min="1"
+          placeholder="Enter time in seconds"
+          id="timeInput"
+        />
+        <button
+          id="startButton"
+          class="bg-blue-500 hover:bg-blue-600 text-white p-2 px-6 rounded-tr-xl rounded-br-xl shadow-md text-lg"
+        >
+          Start
+        </button>
+      </div>
+      <hr class="text-gray-300 mt-4" />
+      <p
+        class="mt-4 text-center text-xl text-blue-500"
+        id="countdownDisplay"
+      ></p>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

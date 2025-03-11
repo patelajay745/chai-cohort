@@ -1,21 +1,14 @@
-const btnAddTodoElement = document.getElementById("btnAddTodo");
 const modalElement = document.getElementById("modal");
 const modalContainer = document.getElementById("modalContainer");
-const btnAddDoingElement = document.getElementById("btnAddDoing");
-const btnAddDoneElement = document.getElementById("btnAddDone");
 const btnCloseElement = document.getElementById("btnClose");
 const btnSubmitElement = document.getElementById("btnSubmit");
 const btnCancel = document.getElementById("btnCancel");
-const todoBoard = document.getElementById("itemContainer-todo");
-const doingBoard = document.getElementById("itemContainer-doing");
-const doneBoard = document.getElementById("itemContainer-done");
+
 const btnEditElement = document.querySelectorAll(".btnEdit");
 const btnDeleteElement = document.querySelectorAll(".btnDelete");
 const inputDescriptionElement = document.getElementById("inputDescription");
 const inputNameElement = document.getElementById("inputName");
-const todoCounterElement = document.getElementById("todoCounter");
-const doingCounterElement = document.getElementById("doingCounter");
-const doneCounterElement = document.getElementById("doneCounter");
+
 const mainDiv = document.getElementById("main");
 const addBoardElement = document.getElementById("addboard");
 const descDivOfModalElement = document.getElementById("descDivOfModal");
@@ -224,18 +217,6 @@ function createNewItem() {
   updateCounter();
 
   openCloseModal(null, "close");
-}
-
-function getboardElement() {
-  if (!selectedBoard) return;
-  switch (selectedBoard) {
-    case "todo":
-      return todoBoard;
-    case "doing":
-      return doingBoard;
-    case "done":
-      return doneBoard;
-  }
 }
 
 // Edit items
