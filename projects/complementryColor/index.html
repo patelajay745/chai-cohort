@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  </head>
+  <body>
+    <div class="bg-zinc-900 flex h-screen items-center justify-center">
+      <div
+        class="p-10 flex flex-col bg-zinc-800 rounded-xl shadow-xl shadow-black gap-4 justify-center"
+      >
+        <h1 class="text-5xl font-bold text-white text-center">
+          Advance Color Picker
+        </h1>
+        <div class="flex gap-4 justify-between">
+          <div class="flex flex-col">
+            <label class="text-center text-zinc-300 text-2xl"
+              >Picked Color</label
+            >
+            <input
+              id="inputColor"
+              class="w-64 h-48 border-none"
+              type="color"
+              id="colorPicker"
+            />
+            <div class="flex w-full justify-between items-center mt-3">
+              <label
+                id="pickedColor"
+                class="text-center text-white font-semibold text-lg border-1 p-1 rounded-lg border-zinc-100"
+                >#000000</label
+              >
+              <button
+                id="pickedSaveBtn"
+                class="bg-green-500 hover:bg-green-700 px-5 py-2 rounded-xl text-white"
+              >
+                Save
+              </button>
+              <button
+                id="pickedColorBtn"
+                class="bg-blue-500 hover:bg-blue-700 px-5 py-2 rounded-xl text-white"
+              >
+                Copy
+              </button>
+            </div>
+          </div>
+          <div class="flex flex-col">
+            <label class="text-center text-zinc-300 text-2xl"
+              >Complementry Color</label
+            >
+
+            <div id="complementryColorDiv" class="bg-white w-64 h-48"></div>
+            <div class="flex w-full justify-between items-center mt-3">
+              <label
+                id="complementryColorText"
+                class="text-center text-white font-semibold text-lg border-1 p-1 rounded-lg border-zinc-100"
+                >#FFFFFF</label
+              >
+              <button
+                id="complSaveBtn"
+                class="bg-green-500 hover:bg-green-700 px-5 py-2 rounded-xl text-white"
+              >
+                Save
+              </button>
+              <button
+                id="complCopyBtn"
+                class="bg-blue-500 hover:bg-blue-700 px-5 py-2 rounded-xl text-white"
+              >
+                Copy
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          id="favoriteContainer"
+          class="flex flex-col gap-2 items-center hidden"
+        >
+          <label class="text-zinc-300 text-2xl">Favorite Colors</label>
+          <div
+            id="favoriteitems"
+            class="max-w-lg flex gap-2 flex-wrap border-1 p-5 border-zinc-100 rounded-xl"
+          >
+            <!-- <div id="item" class="w-10 h-10 bg-black rounded-lg"></div>
+            <div id="item" class="relative w-10 h-10 bg-black rounded-lg">
+              <button
+                class="absolute -top-1 -right-1 bg-white text-black rounded-full w-4 h-4 flex items-center justify-center text-xs leading-none shadow-sm hover:bg-red-500 hover:text-white"
+                onclick="removeItem(this)"
+              >
+                ✕
+              </button>
+            </div> -->
+          </div>
+        </div>
+
+        <!-- Toast Container -->
+        <!-- Toast Container -->
+        <div id="toast-container" class="fixed bottom-5 right-5 space-y-2 z-50">
+          <!-- ✅ SUCCESS Toast -->
+          <div
+            id="toast-success"
+            class="hidden toast flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow-sm dark:text-gray-400 dark:bg-gray-800"
+            role="alert"
+          >
+            <div
+              class="inline-flex items-center justify-center w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200"
+            >
+              <!-- success icon -->
+              ✅
+            </div>
+            <div class="ms-3 text-sm font-normal">Item moved successfully.</div>
+          </div>
+
+          <!-- ❌ DANGER Toast -->
+          <div
+            id="toast-danger"
+            class="hidden toast flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow-sm dark:text-gray-400 dark:bg-gray-800"
+            role="alert"
+          >
+            <div
+              class="inline-flex items-center justify-center w-8 h-8 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200"
+            >
+              ❌
+            </div>
+            <div class="ms-3 text-sm font-normal">Item has been deleted.</div>
+          </div>
+
+          <!-- ⚠️ WARNING Toast -->
+          <div
+            id="toast-warning"
+            class="hidden toast flex items-center w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow-sm dark:text-gray-400 dark:bg-gray-800"
+            role="alert"
+          >
+            <div
+              class="inline-flex items-center justify-center w-8 h-8 text-orange-500 bg-orange-100 rounded-lg dark:bg-orange-700 dark:text-orange-200"
+            >
+              ⚠️
+            </div>
+            <div class="ms-3 text-sm font-normal">
+              Improve password difficulty.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
