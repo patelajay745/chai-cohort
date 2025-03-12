@@ -107,7 +107,7 @@ function updateFavDiv() {
 
   favColor.map((color) => showColorDiv(color));
 
-  favColor
+  favColor.length > 0
     ? favoriteContainer.classList.remove("hidden")
     : favoriteContainer.classList.add("hidden");
 }
