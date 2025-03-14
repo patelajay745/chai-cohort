@@ -1,3 +1,5 @@
 temp/
 react/
 kanban2/
+*/*/node_modules
+*/*/.env
