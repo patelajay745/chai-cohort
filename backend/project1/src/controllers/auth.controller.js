@@ -6,6 +6,8 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { MyMail } from "../utils/sendMail.js";
 import crypto from "crypto";
 import { VerifyEmailToken } from "../models/verifyEmailToken.model.js";
+import { uploader } from "../utils/uploader.js";
+import { ForgotPasswordToken } from "../models/forgotPasswordToken.model.js";
 
 export const addUser = asyncHandler(async (req, res) => {
   const { name, email, password, lastName } = req.body;
@@ -28,7 +30,7 @@ export const addUser = asyncHandler(async (req, res) => {
   });
 
   const token = crypto.randomBytes(32).toString("hex");
-  const link = `${process.env.BASEURL}/verify?id=${createduser._id}&token=${token}`;
+  const link = `${process.env.BASEURL}/verify.html?id=${createduser._id}&token=${token}`;
 
   await VerifyEmailToken.create({ owner: createduser._id, token });
 
@@ -70,7 +72,12 @@ export const getLogin = asyncHandler(async (req, res) => {
   if (!accessToken || !refreshToken)
     throw new ApiError(500, "Something went wrong while generating tokens");
 
-  user.refreshToken = refreshToken;
+  if (user.refreshToken) {
+    user.refreshToken = [...user.refreshToken, refreshToken];
+  } else {
+    user.refreshToken = [refreshToken];
+  }
+
   await user.save();
 
   const options = {
@@ -168,4 +175,211 @@ export const verifyEmailLink = asyncHandler(async (req, res) => {
   return res
     .status(200)
     .json(new ApiResponse("Email is verified successfully."));
+});
+
+export const updateAvatar = asyncHandler(async (req, res) => {
+  const { avatar } = req.files;
+
+  if (Array.isArray(avatar))
+    throw new ApiError(422, "Multiple Images are not allowed");
+
+  if (!avatar.mimetype.startsWith("image"))
+    throw new ApiError(422, "Only image is allowed in avatar");
+
+  const user = await User.findById(req.user.id);
+
+  if (!user) throw new ApiError(404, "user not found");
+
+  //   delete old avatar, if any, from cloud
+  if (user.avatar?.id) {
+    await uploader.destroy(user.avatar.id);
+  }
+
+  //upload file to cloudinary
+  const { public_id: id, secure_url: url } = await uploader.upload(
+    avatar.filepath,
+    {
+      width: 300,
+      height: 300,
+      crop: "thumb",
+      gravity: "face",
+    }
+  );
+
+  if (!id || !url)
+    throw new ApiError(500, "Something went wrong, while uploading avatar ");
+
+  user.avatar = { id, url };
+  await user.save();
+
+  return res.status(200).json(
+    new ApiResponse("Avatar has been updated.", {
+      profile: {
+        id: user.id,
+        name: user.name,
+        lastName: user.lastName,
+        email: user.email,
+        image: user.avatar,
+      },
+    })
+  );
+});
+
+export const updateProfile = asyncHandler(async (req, res) => {
+  const { name, lastName } = req.body;
+
+  if (!name && !lastName)
+    throw new ApiError(
+      422,
+      "Please provide either name or last name to update"
+    );
+
+  const user = await User.findById(req.user.id);
+
+  if (!user) throw new ApiError(404, "user not found");
+
+  if (name) user.name = name;
+  if (lastName) user.lastName = lastName;
+
+  await user.save();
+
+  let message = "";
+  if (name && lastName) {
+    message = `Your name and last name are updated`;
+  } else if (name) {
+    message = `Your name is updated`;
+  } else if (lastName) {
+    message = `Your last name is updated`;
+  }
+
+  return res.status(200).json(
+    new ApiResponse(message, {
+      profile: {
+        name: user.name,
+        lastName: user.lastName,
+        email: user.email,
+        avatar: user.avatar,
+      },
+    })
+  );
+});
+
+export const forgetPassword = asyncHandler(async (req, res) => {
+  const { email } = req.body;
+
+  if (!email) throw new ApiError(422, "Please provide emailId");
+  const user = await User.findOne({ email });
+  if (!user) throw new ApiError(404, "user not found");
+
+  const token = crypto.randomBytes(48).toString("hex");
+
+  const link = `${process.env.BASEURL}/reset-password.html?id=${user._id}&token=${token}`;
+
+  const forgotPasswordToken = await ForgotPasswordToken.findOneAndUpdate(
+    { owner: user._id },
+    { token },
+    { upsert: true, new: true }
+  );
+
+  if (!forgotPasswordToken)
+    throw new ApiError(505, "Something went wrong while generating token");
+
+  const mail = new MyMail(user.email);
+  mail.sendEmail(
+    `Please <a href=${link}>click here</a> to reset your Password`
+  );
+
+  return res
+    .status(200)
+    .json(new ApiResponse("Please check your inbox to reset Password"));
+});
+
+export const verifyPasswordResetToken = asyncHandler(async (req, res) => {
+  const { id, token } = req.body;
+
+  const dbToken = await ForgotPasswordToken.findOne({ owner: id, token });
+
+  if (!dbToken) throw new ApiError(422, "Invalid Token");
+
+  return res.status(200).json(
+    new ApiResponse("Token is valid", {
+      valid: true,
+    })
+  );
+});
+
+export const resetPassword = asyncHandler(async (req, res) => {
+  const { id, token, password } = req.body;
+
+  if (!password) throw new ApiError(422, "Please Provide new password");
+
+  const dbToken = await ForgotPasswordToken.findOne({ owner: id, token });
+
+  if (!dbToken) throw new ApiError(422, "Invalid Token");
+
+  const user = await User.findById(id);
+
+  if (!user) throw new ApiError(404, "user not found");
+
+  user.password = password;
+
+  await user.save();
+
+  const mail = new MyMail(user.email);
+  mail.sendEmail(
+    "Your password has been changed. Now you can use new password"
+  );
+
+  await ForgotPasswordToken.findOneAndDelete({ owner: id, token });
+
+  return res.status(200).json(new ApiResponse("Password has been changed."));
+});
+
+export const getAccessToken = asyncHandler(async (req, res) => {
+  const { refreshToken } = req.body;
+
+  if (!refreshToken) throw new ApiError(422, "Please provide  refresh Token");
+
+  const payload = await jwt.verify(
+    refreshToken,
+    process.env.REFRESH_TOKEN_SECRET
+  );
+
+  if (!payload._id) {
+    throw new ApiError("UnAuthorized request", 401);
+  }
+
+  const user = await User.findOne({ refreshToken, _id: payload._id });
+
+  //   token is compromised so delete all the refresh tokens
+  if (!user) {
+    await User.findByIdAndUpdate(payload._id, { refreshToken: [] });
+    throw new ApiError("UnAuthorized request", 401);
+  }
+
+  const newAccessToken = user.generateAccessToken();
+
+  if (!newAccessToken)
+    throw new ApiError(
+      500,
+      "Something went wrong while generating accesstoken"
+    );
+
+  const newRefreshToken = user.generateRefreshToken();
+
+  user.refreshToken = user.refreshToken.filter((t) => t !== refreshToken);
+  user.refreshToken.push(newRefreshToken);
+  await user.save();
+
+  return res.status(200).json(
+    new ApiResponse(
+      "New Access token is generated. Please use new RefreshToken to generate access token next time",
+      {
+        tokens: {
+          accessToken: newAccessToken,
+          refreshToken: newRefreshToken,
+        },
+      }
+    )
+  );
 });

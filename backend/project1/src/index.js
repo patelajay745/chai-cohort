@@ -3,7 +3,15 @@ import "./db/index.js";
 import express from "express";
 import cookieParser from "cookie-parser";
 
+import swaggerUi from "swagger-ui-express";
+import swaggerDocument from "./swagger-output.json" with { type: "json" };
+
 const app = express();
+
+app.use(express.static("src/public"));
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

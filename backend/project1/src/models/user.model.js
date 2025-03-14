@@ -17,6 +17,7 @@ const userSchema = new Schema(
       type: String,
       require: true,
       trim: true,
+      unique: true,
     },
     password: {
       type: String,
@@ -29,7 +30,12 @@ const userSchema = new Schema(
       default: false,
     },
     refreshToken: {
-      type: String,
+      type: [String],
+    },
+    avatar: {
+      type: Object,
+      url: String,
+      id: String,
     },
   },
   { timestamps: true }
