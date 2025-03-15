@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Qoute Generator</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  </head>
+  <body>
+    <div class="h-screen bg-slate-200 flex items-center justify-center">
+      <div
+        id="qouteContainer"
+        class="flex gap-8 items-center justify-center flex-col bg-slate-300 px-60 py-20 rounded-xl"
+      >
+        <span
+          id="qoute"
+          class="text-black text-5xl text-wrap w-full text-center"
+          >I am fond of pigs. Dogs look up to us. Cats look down on us. Pigs
+          treat us as equals.</span
+        >
+        <span
+          id="author"
+          class="text-slate-600 text-5xl text-wrap w-full text-center"
+          >I am fond of pigs. Dogs look up to us. Cats look down on us. Pigs
+          treat us as equals.</span
+        >
+        <div id="buttonsContainer" class="flex gap-4">
+          <button id="share" class="bg-black px-10 py-4 rounded-xl text-white">
+            Share on X
+          </button>
+          <button id="newQoute" class="bg-black px-10 py-4 rounded-xl text-white">
+            Get A New Qoute
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
