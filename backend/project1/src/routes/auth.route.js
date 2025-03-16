@@ -6,6 +6,7 @@ import {
   getLogin,
   getLogout,
   getProfile,
+  getS3Url,
   resetPassword,
   updateAvatar,
   updateProfile,
@@ -28,3 +29,4 @@ authRouter.post("/forget-pass", forgetPassword); //to generate forget-password l
 authRouter.post("/verify-password-reset-token", verifyPasswordResetToken);
 authRouter.post("/reset-password", resetPassword);
 authRouter.post("/refresh-token", getAccessToken);
+authRouter.get("/test", getS3Url);

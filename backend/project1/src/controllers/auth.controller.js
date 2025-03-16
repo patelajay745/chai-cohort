@@ -8,6 +8,7 @@ import crypto from "crypto";
 import { VerifyEmailToken } from "../models/verifyEmailToken.model.js";
 import { uploader } from "../utils/uploader.js";
 import { ForgotPasswordToken } from "../models/forgotPasswordToken.model.js";
+import { generatePresignedUrl } from "../utils/S3.js";
 
 export const addUser = asyncHandler(async (req, res) => {
   const { name, email, password, lastName } = req.body;
@@ -382,4 +383,11 @@ export const getAccessToken = asyncHandler(async (req, res) => {
       }
     )
   );
+});
+
+export const getS3Url = asyncHandler(async (req, res) => {
+  const url = await generatePresignedUrl("a", "ajaypatel-nodejs ");
+
+  console.log(url);
+  return res.status(200).json(new ApiResponse("url:", { url }));
 });

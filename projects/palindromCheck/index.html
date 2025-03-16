@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Palindrom Check</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  </head>
+  <body>
+    <div class="h-screen bg-zinc-900 flex items-center justify-center">
+      <div
+        class="p-10 bg-zinc-950 text-white rounded-xl shadow-xl flex w-78 flex-col gap-4"
+      >
+        <h1 class="text-4xl font-bold text-zinc-500 text-wrap text-center">
+          Palindrom Checker
+        </h1>
+        <input id="inputText"
+          class="rounded-lg bg-zinc-900 px-5 py-3"
+          type="text"
+          placeholder="Enter Text"
+        />
+        <button id="submitButton" class="bg-blue-500 px-4 py-3 rounded-xl">
+          Check Palindrom
+        </button>
+        <label id="resultText" class="text-center text-xl"></label>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
