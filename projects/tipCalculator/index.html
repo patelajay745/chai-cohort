@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  </head>
+  <body>
+    <div class="h-screen bg-zinc-900 flex items-center justify-center">
+      <div
+        class="p-10 bg-zinc-950 text-white rounded-xl shadow-xl flex w-78 flex-col gap-4"
+      >
+        <h1 class="text-center text-3xl font-bold">Tip Calculator</h1>
+        <div class="flex flex-col gap-1 text-zinc-500">
+          <label>Bill Amount:</label>
+          <input
+            id="amount"
+            type="number"
+            min="0"
+            placeholder="Enter bill amount"
+            class="bg-zinc-900 p-2 rounded-lg"
+          />
+        </div>
+        <div class="flex flex-col gap-1 text-zinc-500">
+          <label>Tip percentage:</label>
+          <input
+            id="percentage"
+            type="text"
+            placeholder="Enter tip %"
+            class="bg-zinc-900 p-2 rounded-lg"
+          />
+        </div>
+        <div class="flex flex-col gap-1 text-zinc-500">
+          <label>Number of People:</label>
+          <input
+            id="people"
+            type="text"
+            placeholder="number of people"
+            class="bg-zinc-900 p-2 rounded-lg"
+          />
+        </div>
+
+        <button
+          id="calculate"
+          class="bg-green-500 px-4 py-2 rounded-lg hover:bg-green-600"
+        >
+          Calculate Tip
+        </button>
+
+        <div class="flex flex-col gap-1">
+          <label id="totalTip" class="text-center text-xl"
+            >Total Tip: $0.00</label
+          >
+          <label id="tipPerPerson" class="text-center text-xl"
+            >Tip per person: $0.00</label
+          >
+        </div>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
